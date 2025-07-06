@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyTube</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background-color: #202020;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: red;
+    }
+    .search input {
+      padding: 8px;
+      width: 300px;
+      border-radius: 20px;
+      border: none;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background-color: #1e1e1e;
+      width: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+    .card .content {
+      padding: 10px;
+    
+    .card h4 {
+      margin: 0;
+    }
+    .card p {
+      font-size: 14px;
+      color: #aaa;
+    }
+    #videoPlayer {
+      width: 100%;
+      max-width: 700px;
+      margin: 20px auto;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MyTube</div>
+  <div class="search">
+    <input type="text" placeholder="Search..."/>
+  </div>
+</header>
+
+  <div style="padding: 10px; background: #1a1a1a; margin-top: 10px;">
+    <p id="videoTitle" style="font-size: 18px; font-weight: bold;">Video Title</p>
+    <div style="display: flex; gap: 15px; align-items: center;">
+      <span id="viewCount">Views: 0</span>
+      <button onclick="likeVideo()" style="padding: 5px 15px; background: lime; color: black; border: none; border-radius: 5px;">👍 Like <span id="likeCount">0</span></button>
+    </div>
+
+    <h4 style="margin-top: 20px;">Comments</h4>
+    <div id="commentList" style="max-height: 200px; overflow-y: auto; background: #2a2a2a; padding: 10px; border-radius: 5px;"></div>
+    <input id="commentInput" type="text" placeholder="Write a comment..." style="width: 100%; padding: 10px; margin-top: 10px;" />
+    <button onclick="addComment()" style="margin-top: 5px; padding: 8px 15px;">Post</button>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="card" onclick="playVideo('https://www.youtube.com/embed/ysz5S6PUM-U')">
+    <img src="https://i.ytimg.com/vi/ysz5S6PUM-U/hqdefault.jpg" alt="Video">
+    <div class="content">
+      <h4>Sample Video 1</h4>
+      <p>1.2M views · 2 days ago</p>
+    </div>
+  </div>
+
+  

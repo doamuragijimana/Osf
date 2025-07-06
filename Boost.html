@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Champagne</title>
+
+  <style>
+    body {
+      background-color: black;
+      color: lime;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      margin-top: 100px;
+    }
+
+    .card {
+      border: 2px solid lime;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+          box-shadow: inset 0 0 15px lime;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background-color: #111;
+    }
+
+      .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 97%;
+    border-radius: 5px;
+        box-shadow: inset 0 0 15px lime;
+  }
+  .nav-item {
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+    transition: 0.3s;
+    
+    border-radius: 4px;
+
+  }
+  .nav-item:hover {
+  
+    color: #609;
+    transform: scale(1.1);
+      border-radius: 4px;
+  }
+  .nav-item.active:hover{
+    color: blue;
+    border-radius: 4px;
+  }
+  .nav-item i {
+    font-size: 20px;
+    position: relative;
+  }
+  .nav-item span {
+    display: block;
+    font-size: 12px;
+  }
+  .nav-item.active {
+    color: #000;
+  }
+  .nav-item .dot {
+    position: absolute;
+    top: -2px;
+    right: -6px;
+    height: 7px;
+    width: 7px;
+    background: red;
+    border-radius: 50%;
+  }
+  img{
+    border-radius:10px;
+    border:1px solid blue;
+    height:50px;
+    width:51px;
+  }
+    .trend{
+     
+    border: 2px solid red;
+    width: 58px;
+    height: 60px;
+  }
+  fieldset{
+    border: 2px solid lime;
+    border-radius: 1em;
+    box-shadow: inset 0 0 15px lime;
+  }
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+      <h1>Champagne</h1>
+
+      <div class="card" onclick="goToPage('boost')">
+        Buy Levels vip
+      </div>
+      <div class="card" onclick="goToPage('top')">
+        Be on the Top
+      </div>
+      <div class="card" onclick="goToPage('ads')">
+        Promote your ADS
+      </div>
+    </fieldset>
+    </div>
+        <div class="bottom-nav">
+      <div class="nav-item active"onclick="window.location='Home.html'">
+        
+        <span><image src="home.png" alt="home"></image></span>
+      </div>
+      
+      
+      <div class="nav-item" onclick="window.location.href='view.html'">
+      
+        <span><img src="views.png" alt="trends"></span>
+      </div>
+      <div class="nav-item" onclick="window.location.href='Boost.html'">
+        
+        <span><img class="trend" src="view.png"></img></span>
+      </div>
+      <div class="nav-item" onclick="window.location.href='Boost level.html'">
+        
+        <span><img src="trends.png"></img></span>
+      </div>
+      <div class="nav-item" onclick="window.location.href='profile.html'">
+        
+
+      
+        <span><img src="profile.png">          <span class="dot"></span></img></span>
+      </div>
+    </div>
+
+
+    <script>
+      function goToPage(page) {
+        if (page === 'boost') {
+          window.location.href = "VIP.html";
+        } else if (page === 'top') {
+          window.location.href = "top.html";
+        } else if (page === 'ads') {
+          window.location.href = "ads.html";
+        }
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Channel Info</title>
+  <style>
+    body {
+      background: #000;
+      color: #0f0;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .container {
+      border: 2px solid #0f0;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      background: #111;
+    }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid #0f0;
+      object-fit: cover;
+      cursor: pointer;
+      margin: auto;
+      display: block;
+    }
+    input[type="file"] {
+      display: none;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #0f0;
+      background: #000;
+      color: #0f0;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <label for="upload">
+      <img src="https://via.placeholder.com/100" class="profile-pic" id="profilePreview">
+    </label>
+    <input type="file" id="upload" accept="image/*">
+
+    <input type="text" id="name" placeholder=" Channel Name">
+    <input type="text" id="link" placeholder="Paste YouTube Channel URL">
+
+    <input type="number" id="subs" placeholder="Subscribers">
+    <input type="number" id="views" placeholder="Views">
+    <input type="number" id="likes" placeholder="Likes">
+
+    <button onclick="searchChannel()">Next</button>
+    <button class="button" onclick="window.location.href='Home.html'">🧩 Guest</button>
+  </div>
+
+  <script>
+    // Preview profile image
+    document.getElementById('upload').addEventListener('change', function(event) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        document.getElementById('profilePreview').src = reader.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    });
+
+    // Simulate searching
+    function searchChannel() {
+      const link = document.getElementById("link").value;
+      if (link.includes("youtube.com")) {
+        alert("Searching channel...");
+        // Aha wakongeramo real API request niba ubishoboye
+      } else {
+        alert("Shyiramo URL ya YouTube channel nyayo.");
+      }
+    }
+  </script>
+
+</body>
+</html>

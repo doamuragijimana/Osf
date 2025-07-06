@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Champagne</title>
+
+  <style>
+    body {
+      background-color: black;
+      color: lime;
+      font-family: sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .card {
+      border: 2px solid lime;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      background-color: #111;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Champagne</h1>
+
+    <div class="card" onclick="goToPage('boost')">
+      Boost Level
+    </div>
+    <div class="card" onclick="goToPage('top')">
+      Be on the Top
+    </div>
+    <div class="card" onclick="goToPage('ads')">
+      Promote your ADS
+    </div>
+  </div>
+
+  <script>
+    function goToPage(page) {
+      if (page === 'boost') {
+        window.location.href = "boost.html";
+      } else if (page === 'top') {window.location.href = "top.html";
+  } else if (page === 'ads') {
+    window.location.href = "ads.html";
+  }
+}
+
+</script>
+</body>
+</html>
