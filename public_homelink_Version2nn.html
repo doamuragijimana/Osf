@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HOME # OSF VIP</title>
+<style>
+  /* (Animated & improved CSS - same content as earlier improved homelink) */
+  html,body{height:100%; margin:0; font-family:system-ui, -apple-system, "Segoe UI", Roboto; background:#01020a;}
+  .bg {
+    position:fixed; inset:0; z-index:0;
+    background: radial-gradient(circle at 20% 20%, #2ef30620, transparent 20%),
+                radial-gradient(circle at 80% 80%, #f8c00720, transparent 20%),
+                linear-gradient(180deg,#1b0033,#07031a 80%);
+    transition: transform 0.8s ease;
+    will-change: transform ;
+    animation: bg-nn 12s linear infinite;
+  }
+  @keyframes bg-nn { 0%{transform:scale(1)}50%{transform:scale(1.02) translate(-1%,1%)}100%{transform:scale(1)} }
+
+  .wrap { position:relative; z-index:3; width:100%; display:flex; align-items:flex-start; justify-content:center; padding:3rem; box-sizing:border-box; gap:26px; height:100vh; overflow:auto; }
+
+  /* make sidebar sticky and not move when scrolled */
+  .side-bar { width:350px; padding:2.2rem; border-radius:14px; background: rgba(193,243,236,0.045); border:1px solid rgba(255,255,255,0.06); box-shadow:0 10px 28px rgba(0,0,0,0.45); backdrop-filter:blur(8px); transition:transform .35s; position:sticky; top:24px; height: calc(100vh - 48px); overflow: hidden; }
+  .side-bar:hover{ transform: translateY(-6px); box-shadow:0 18px 36px rgba(0,0,0,0.6); }
+
+  .logoo{ height:70px; width:100%; background:linear-gradient(90deg,#2ef306,#ffe044); color:#050018; border-radius:8px; padding:10px; font-family:cursive; display:flex; align-items:center; justify-content:center; box-shadow: inset 0 -6px 28px rgba(0,0,0,0.06); }
+
+  .button-side, .button-sideactive { width:120px; height:100px; margin:12px 6px; cursor:pointer; border-radius:8px; background:rgba(150,165,253,0.06); border:1px solid rgba(255,250,255,0.04); box-shadow:0 6px 18px rgba(0,0,0,0.36); color:#fff; font-weight:700; transition:transform .45s cubic-bezier(.2,.9,.2,1); display:inline-flex; align-items:center; justify-content:center; gap:8px; flex-direction:column; }
+  .button-side:hover, .button-sideactive:hover { transform: translateY(-6px) scale(1.03) rotate(-2deg); box-shadow:0 18px 36px rgba(0,0,0,0.6); filter: saturate(1.15); }
+  .button-side { background: linear-gradient(180deg,#111 0,#0b0322 100%); }
+  .button-sideactive { background: linear-gradient(90deg,#ffcf58,#ff86a0); color:#10001a; }
+
+  .right-col { flex:1 1 780px; max-width:980px; display:flex; flex-direction:column; gap:18px; }
+
+  .top-info { display:flex; gap:18px; align-items:center; justify-content:space-between; }
+
+  .profile-card { flex:0 0 320px; display:flex; align-items:center; gap:14px; padding:12px 16px; border-radius:12px; background:linear-gradient(180deg,#02021a88,#04102a88); border:1px solid rgba(255,255,255,0.05); box-shadow:0 12px 28px rgba(0,0,0,0.6); color:#dfe; transition:transform .45s; }
+  .profile-card:hover { transform: translateY(-6px); box-shadow:0 24px 48px rgba(0,0,0,0.7); }
+  .profile-pic { width:72px; height:72px; border-radius:50%; object-fit:cover; border:2px solid #2ef306; transition:transform .4s; }
+  .profile-card:hover .profile-pic { transform: rotate(6deg) scale(1.05); }
+
+  /* make main grid scroll if content is long; keep right gallery sticky */
+  main.content { display:grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap:18px; align-items:start; overflow:auto; }
+  .video { background: linear-gradient(180deg,#071032,#0b0322); border-radius:12px; padding:12px; color:#fff; box-shadow:0 8px 22px rgba(0,0,0,0.7); transition:transform .25s; position:relative; overflow:hidden; }
+  .video:hover { transform: translateY(-8px) scale(1.02); box-shadow:0 18px 48px rgba(0,0,0,0.85); }
+  .video .img { width:56px; height:56px; border-radius:50%; }
+  .video .name{ font-weight:700; color:#9df77a; margin-bottom:6px; }
+  .video .meta{ color:#b0b6ff; font-size:13px; margin-bottom:10px; }
+  .subscribe-btn { background:linear-gradient(90deg,#ff86a0,#ffcf58); border:none; padding:8px 14px; border-radius:10px; color:#10001a; font-weight:800; cursor:pointer; transition:transform .18s; }
+  .subscribe-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow:0 10px 26px rgba(255,136,160,0.18); }
+  
+  .right-bar { width:260px; padding:16px; border-radius:12px; background:linear-gradient(180deg,#02021a88,#04102a88); border:1px solid rgba(255,255,255,0.03); color:#cfe; box-shadow:0 12px 30px rgba(0,0,0,0.7); display:flex; flex-direction:column; gap:12px; align-items:stretch; position:sticky; top:24px; max-height: calc(100vh - 48px); overflow:auto; }
+
+  .gallery-pic { height:120px; border-radius:8px; background-size:cover; background-position:center; border:2px solid rgba(255,255,255,0.03); transition:transform .25s, box-shadow .25s, filter .25s; }
+  .gallery-pic:hover { transform: translateY(-6px); filter:brightness(1.08); box-shadow:0 18px 36px rgba(0,0,0,0.6); }
+   .stat{color: #2ef306;}
+  .fade-in { animation: fadeInUp .6s ease both; }
+  @keyframes fadeInUp { from {opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+
+  @media (max-width: 980px) {
+    .button-side,.button-sideactive{ width:90px; height: 50px;}
+    .right-col { padding: 19px;}
+    .right-bar { visibility: visible; width: 100%; height: auto; position:relative; max-height:none; overflow:visible; }
+    .wrap{ display: block; }
+    .side-bar{ width: 100%; position:relative; height:auto; }
+    .logoo{height: 30px; display: flex;}
+    .button-side,.button-sideactive{font-size: 10px; width: 70px;}
+    code{color: #f3b406;}
+  }
+</style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="side-bar fade-in">
+      <!-- make this side-bar dont scrolable don't move when scroled .make it only in desgn-->
+      <div class="logoo">  <code>Offmaker</code>Welcome to OSF VIP — Social Booster</div>
+   
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;margin-top:12px;">
+        <button class="button-sideactive" data-tab="home" aria-pressed="true">🏡HOME</button>
+        <button class="button-side" data-tab="video" id="goto-video">➕VIDEO</button>
+        <button class="button-side" data-tab="setting" id="goto-setting">❁SETTING</button>
+        <button class="button-side" data-tab="ads" id="goto-ads">⁛ADS</button>
+        <button class="button-side" data-tab="share" id="goto-share">SHARE</button>
+        <button class="button-side" data-tab="account" id="goto-account">ACCOUNT</button>
+      </div>
+    </div>
+
+    <div class="right-col">
+      <div class="top-info fade-in">
+        <div class="profile-card">
+          <img id="profilePreview" src="profile.png" class="profile-pic" alt="profile">
+          <div>
+            <div style="font-weight:800; color:#9df77a;" id="user-name">Offmaker</div>
+            <div style="font-size:13px;color:#a9b1ff" id="user-level">Level: 4</div>
+            <div style="font-size:12px;color:#c7ffd3">Subscribers: <span id="subs-count">500</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div class="stat">Coins: <span id="coins">1200</span></div>
+          <div class="stat">Views: <span id="views">1500</span></div>
+        </div>
+      </div>
+      
+      <main class="content" id="videosGrid" aria-live="polite">
+        <!-- Videos populated by JS -->
+      </main>
+     
+    </div>
+
+    <aside class="right-bar fade-in" id="gallery">
+      <!-- make this side overflow and this side not moved-->
+      <div style="font-weight:800; color:#fff; font-size:16px;">Products / Gallery</div>
+
+      <div class="gallery-pic" id="g0" style="background-image:url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=60');"></div>
+      <div class="gallery-pic" id="g1" style="background-image:url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=60');"></div>
+      <div class="gallery-pic" id="g2" style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=60');"></div>
+    </aside>
+  </div>
+
+<script>
+/* Demo + backend hooks (same code as earlier) */
+const demoVideos = [
+  { id:'v1', name:'Offmaker', level:4, subs:500, img:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=60', views:'1.2M' },
+  { id:'v2', name:'Offmaker', level:3, subs:480, img:'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=60', views:'980K' },
+  { id:'v3', name:'Offmaker', level:1, subs:230, img:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=60', views:'45K' },
+  { id:'v4', name:'Offmaker', level:4, subs:620, img:'https://images.unsplash.com/photo-1526178613658-3a3f0f4c8e56?auto=format&fit=crop&w=600&q=60', views:'280K' },
+  {id:'v2', name:'Offmaker', level:3, subs:480, img:'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=60', views:'980K' },
+  { id:'v3', name:'Offmaker', level:1, subs:230, img:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=60', views:'45K' },
+  { id:'v4', name:'Offmaker', level:4, subs:620, img:'https://images.unsplash.com/photo-1526178613658-3a3f0f4c8e56?auto=format&fit=crop&w=600&q=60', views:'280K' }
+  ,
+];
+
+function el(tag, props = {}, ...children) {
+  const node = document.createElement(tag);
+  Object.entries(props).forEach(([k,v]) => { if(k.startsWith('on')) node.addEventListener(k.slice(2), v); else node.setAttribute(k,v);});
+  children.forEach(c => { if(typeof c === 'string') node.appendChild(document.createTextNode(c)); else if(c) node.appendChild(c); });
+  return node;
+}
+
+async function loadVideos() {
+  let list = demoVideos;
+  try {
+    const res = await fetch('/api/videos');
+    if(res.ok) list = await res.json();
+  } catch(e){ console.warn('API not available, using demo videos'); }
+
+  const grid = document.getElementById('videosGrid');
+  grid.innerHTML = '';
+  list.forEach(v => {
+    const card = el('article', { class:'video fade-in' },
+      el('img', { src:v.img || '', class:'img', alt:'thumb' }),
+      el('div', { class:'name'}, v.name),
+      el('div', { class:'meta'}, `${v.views} · level ${v.level}`),
+      el('div', {}, el('button', { class:'subscribe-btn', onClick: () => subscribe(v.id) }, 'Subscribe'))
+    );
+    grid.appendChild(card);
+  });
+}
+
+async function subscribe(targetId) {
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ target: targetId, user: 'offmaker' })
+    });
+    if(res.ok){
+      const data = await res.json();
+      document.getElementById('subs-count').textContent = data.subscribers;
+      document.getElementById('coins').textContent = data.coins;
+      flashSuccess('Subscribed — +40 coins!');
+      return;
+    }
+  } catch(e){}
+  flashSuccess('Subscribed (demo).');
+}
+
+async function wireGallery() {
+  for(let i=0;i<3;i++){ 
+    const elg = document.getElementById('g'+i);
+    if(!elg) continue;
+    elg.addEventListener('click', async () => {
+      try {
+        const res = await fetch('/api/gallery/'+i);
+        if(res.ok){
+          const p = await res.json();
+          alert(`Product: ${p.name}\nSeller: ${p.seller}\nCountry: ${p.country}\nPrice: ${p.price}\n\n${p.desc}`);
+        } else {
+          alert('No product data');
+        }
+      } catch(e) {
+        alert('Server not available — demo product view.');
+      }
+    });
+  }
+}
+
+document.getElementById('profilePreview').addEventListener('click', () => {
+  const inp = document.createElement('input');
+  inp.type='file'; inp.accept='image/*';
+  inp.onchange = async (ev) => {
+    const file = ev.target.files[0];
+    if(!file) return;
+    const url = URL.createObjectURL(file);
+    document.getElementById('profilePreview').src = url;
+    const form = new FormData();
+    form.append('avatar', file);
+    try {
+      const r = await fetch('/api/upload-profile', { method:'POST', body: form });
+      if(r.ok) flashSuccess('Profile uploaded');
+    } catch(e) { console.warn(e); }
+  };
+  inp.click();
+});
+
+async function searchChannel() {
+  const link = prompt('Paste YouTube channel URL');
+  if(!link) return;
+  try {
+    const res = await fetch('/api/channel', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ url: link })
+    });
+    if(res.ok){
+      const data = await res.json();
+      alert('Fetched '+(data.videos?.length||0)+' videos (demo).');
+    } else alert('Invalid channel or server error.');
+  } catch(e){
+    alert('Server not available — demo only.');
+  }
+}
+
+function flashSuccess(msg){
+  const n = document.createElement('div');
+  n.textContent = msg;
+  n.style.position='fixed'; n.style.right='20px'; n.style.bottom='20px';
+  n.style.background='linear-gradient(90deg,#2ef306,#ffe04)'; n.style.color='#050018';
+  n.style.padding='10px 14px'; n.style.borderRadius='10px'; n.style.boxShadow='0 10px 30px rgba(0,0,0,0.6)';
+  document.body.appendChild(n);
+  setTimeout(()=> n.style.opacity=0, 1800);
+  setTimeout(()=> n.remove(), 2600);
+}
+
+document.getElementById('goto-video').addEventListener('click', ()=> location.href='videolink.html');
+document.getElementById('goto-setting').addEventListener('click', ()=> location.href='settinglink.html');
+document.getElementById('goto-ads').addEventListener('click', ()=> location.href='adslink.html');
+document.getElementById('goto-share').addEventListener('click', ()=> location.href='sharelink.html');
+document.getElementById('goto-account').addEventListener('click', ()=> location.href='accountlink.html');
+
+loadVideos();
+wireGallery();
+setInterval(async ()=>{
+  try {
+    const res = await fetch('/api/user/offmaker');
+    if(res.ok){
+      const u = await res.json();
+      document.getElementById('subs-count').textContent = u.subscribers;
+      document.getElementById('coins').textContent = u.coins;
+      document.getElementById('user-level').textContent = `Level: ${u.level}`;
+    }
+  } catch(e){}
+},3000);
+</script>
+</body>
+</html>
